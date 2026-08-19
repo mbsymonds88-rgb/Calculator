@@ -1,6 +1,6 @@
 # Jared Voice Assistant
 
-A sophisticated Windows-based AI voice assistant with speech recognition, natural language processing, and a modern GUI interface.
+A sophisticated AI voice assistant with speech recognition, natural language processing, and modern interface. Available for **Windows** and **iOS**.
 
 ## Features
 
@@ -15,13 +15,36 @@ A sophisticated Windows-based AI voice assistant with speech recognition, natura
 - **Modern GUI**: Dark-themed interface built with PySide6
 - **Conversation History**: Persistent chat history across sessions
 
-## Requirements
+## Platforms
+
+### 🪟 Windows Version
+- **Technology**: Python, PySide6, Windows Speech API
+- **File**: `main.py`
+- **Documentation**: See sections below
+
+### 📱 iOS Version
+- **Technology**: Swift, SwiftUI, iOS Speech Framework
+- **Folder**: `JaredAssistant/`
+- **Documentation**: See [iOS-README.md](iOS-README.md) and [SETUP-IOS.md](SETUP-IOS.md)
+
+---
+
+## Windows Requirements
 
 - Windows 10/11 (for speech recognition and TTS)
 - Python 3.8+
 - OpenAI API key
 
+## iOS Requirements
+
+- iOS 15.0+ (iPhone or iPad)
+- Xcode 14.0+ (for development)
+- Mac computer (for building)
+- OpenAI API key
+
 ## Installation
+
+### Windows Installation
 
 1. Clone this repository
 2. Install dependencies:
@@ -32,8 +55,24 @@ A sophisticated Windows-based AI voice assistant with speech recognition, natura
    ```
    OPENAI_API_KEY=your_api_key_here
    ```
+4. Run the application:
+   ```bash
+   python main.py
+   ```
+
+### iOS Installation
+
+See detailed setup guide: **[SETUP-IOS.md](SETUP-IOS.md)**
+
+Quick start:
+1. Open Xcode
+2. Create new iOS App project
+3. Add files from `JaredAssistant/` folder
+4. Build and run on simulator or device
 
 ## Usage
+
+### Windows Usage
 
 Run the application:
 ```bash
@@ -67,6 +106,26 @@ Modify `main.py` to customize:
 ## Security Note
 
 The application only opens folders and applications explicitly allowed in the configuration. Review and modify `ALLOWED_APPLICATIONS` before use.
+
+## Platform Comparison
+
+| Feature | Windows | iOS |
+|---------|---------|-----|
+| Voice Recognition | ✅ Windows Speech API | ✅ Apple Speech Framework |
+| Text-to-Speech | ✅ PowerShell TTS | ✅ AVSpeechSynthesizer |
+| OpenAI Integration | ✅ GPT-4.1-mini | ✅ GPT-4o-mini |
+| GUI Framework | PySide6 (Qt) | SwiftUI (Native) |
+| Reminders | ✅ Full support | ⏳ Coming soon |
+| Folder/App Control | ✅ Windows apps | ❌ iOS sandboxed |
+| Conversation History | ✅ JSON files | ✅ UserDefaults |
+| Wake Word | ✅ "Hey Jared" | ⏳ Tap to activate |
+
+## Documentation
+
+- **Main README**: This file (cross-platform overview)
+- **iOS Guide**: [iOS-README.md](iOS-README.md) - iOS features and usage
+- **iOS Setup**: [SETUP-IOS.md](SETUP-IOS.md) - Detailed iOS setup instructions
+- **Windows**: Sections above cover Windows setup and usage
 
 ## License
 
