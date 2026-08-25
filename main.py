@@ -30,7 +30,11 @@ from PySide6.QtWidgets import (
     QTextEdit,
     QVBoxLayout,
     QWidget,
+    QTabWidget,
 )
+
+# Import Cherry's widget
+from cherry_tab_widget import CherryWidget
 
 
 # =========================================================
@@ -1618,6 +1622,33 @@ class MainWindow(QMainWindow):
                 ).start()
 
     def build_ui(self):
+        # Create tab widget
+        self.tab_widget = QTabWidget()
+        self.tab_widget.setStyleSheet("""
+            QTabWidget::pane {
+                border: 2px solid #9E2638;
+                border-radius: 5px;
+            }
+            QTabBar::tab {
+                background-color: #4A252B;
+                color: #FFE5E5;
+                padding: 10px 20px;
+                margin: 2px;
+                border-radius: 5px;
+            }
+            QTabBar::tab:selected {
+                background-color: #8B1E2D;
+                color: white;
+            }
+            QTabBar::tab:hover {
+                background-color: #641522;
+            }
+        """)
+        
+        # Create Jared Assistant tab
+        jared_tab = QWidget()
+        jared_layout = QVBoxLayout(jared_tab)
+        
         self.transcript = QTextEdit()
         self.transcript.setReadOnly(True)
 
@@ -1647,17 +1678,20 @@ class MainWindow(QMainWindow):
         button_layout.addWidget(self.pause_button)
         button_layout.addWidget(self.stop_button)
 
-        layout = QVBoxLayout()
-        layout.addWidget(QLabel("Conversation"))
-        layout.addWidget(self.transcript)
-        layout.addWidget(self.command_input)
-        layout.addWidget(self.status_label)
-        layout.addLayout(button_layout)
-
-        container = QWidget()
-        container.setLayout(layout)
-
-        self.setCentralWidget(container)
+        jared_layout.addWidget(QLabel("Conversation"))
+        jared_layout.addWidget(self.transcript)
+        jared_layout.addWidget(self.command_input)
+        jared_layout.addWidget(self.status_label)
+        jared_layout.addLayout(button_layout)
+        
+        # Create Cherry's widget tab
+        cherry_tab = CherryWidget()
+        
+        # Add tabs to tab widget
+        self.tab_widget.addTab(jared_tab, "🎙️ Jared Assistant")
+        self.tab_widget.addTab(cherry_tab, "🍒 Cherry's Orchard")
+        
+        self.setCentralWidget(self.tab_widget)
 
     def initialize_bot(self):
         try:
